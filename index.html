@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>キャラクター簡易表</title>
+  <meta property="og:title" content="キャラクター簡易表">
+  <meta property="og:description" content="HIC_SHIのキャラクターまとめ！">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hic-shi.github.io/characterstable/">
+  <meta property="og:image" content="https://hic-shi.github.io/characterstable/icon.png">
+  <meta property="og:site_name" content="HIC_SHI Tool">
   <style>
     *, *::before, *::after { box-sizing: border-box; }
 
@@ -177,10 +183,10 @@
   <nav class="toc" id="toc-panel" aria-label="作者一覧">
     <p>目次</p>
     <ul>
-      <li><a href="#作者1">音魅帳</a></li>
-      <li><a href="#作者2">■■■■■■</a></li>
-      <li><a href="#作者3">nakitakuなる</a></li>
-      <li><a href="#作者4">HIC_SHI</a></li>
+      <li><a href="#nemi_note">音魅帳</a></li>
+      <li><a href="#nakitakunaru">nakitakuなる</a></li>
+      <li><a href="#anon">■■■■■■</a></li>
+      <li><a href="#hic_shi">HIC_SHI</a></li>
     </ul>
   </nav>
   <main>
@@ -192,28 +198,19 @@
   <script>
   const authorDataList = [
   {
-    authorId: "作者1",
+    authorId: "nemi_note",
     authorName: "音魅帳",
     characters: [
       { id: 1, name: "tell", gender: "女", age: "", category: "企画", project_name: "儚国魔法大戦記", memo: "", icon: "https://i.gyazo.com/bdaa72372ce50cedffb8fe1f0ea9f253.png" },
+      { id: 6, name: "柳生 雪弥", gender: "男", age: "", category: "企画", project_name: "夜光館", memo: "", icon: "https://i.gyazo.com/4f1fd9d60cf0de07d9b20f3730d381bc.png" },
       { id: 2, name: "ラヴ", gender: "女", age: "", category: "企画", project_name: "夜光館", memo: "", icon: "https://i.gyazo.com/53d26b514d60ad6f9d8ea555a2847bb8.png" },
-      { id: 3, name: "妖", gender: "不明", age: "", category: "企画", project_name: "夜光館", memo: "", icon: "" },
-      { id: 4, name: "明暦", gender: "男", age: "", category: "企画", project_name: "夜光館", memo: "", icon: "" },
-      { id: 5, name: "鵜飼 鈴音", gender: "女", age: "", category: "企画", project_name: "夜光館", memo: "", icon: "" },
-      { id: 6, name: "柳生 雪弥", gender: "男", age: "", category: "企画", project_name: "夜光館", memo: "", icon: "" },
+      { id: 4, name: "明暦", gender: "男", age: "", category: "企画", project_name: "夜光館", memo: "", icon: "https://i.gyazo.com/cfac26c79c87e82057b651cb84e688a5.png" },
+      { id: 5, name: "鵜飼 鈴音", gender: "女", age: "", category: "企画", project_name: "夜光館", memo: "", icon: "https://i.gyazo.com/76bb693f1fccad3a7264e351212982c9.png" },
+      { id: 3, name: "妖", gender: "不明", age: "", category: "企画", project_name: "夜光館", memo: "", icon: "https://i.gyazo.com/07668f06d2b4aa61f507dd4e8c3f9a78.png" },
+      { id: 6, name: "no name", gender: "不明", age: "", category: "企画", project_name: "夜光館", memo: "人魚の肉を一人で食べた", icon: "https://i.gyazo.com/e3ad03d42bde414e9dac86ac2375c8c8.png" },
+      { id: 9, name: "乙坂 奏", gender: "女", age: "", category: "自創作", project_name: "名声", memo: "", icon: "https://i.gyazo.com/11b465c0fc8a48f92eff30ae8a8b2eb0.jpg" },
       { id: 7, name: "時雨 霧雨", gender: "女", age: "", category: "自創作", project_name: "名声", memo: "", icon: "" },
       { id: 8, name: "志亜", gender: "女", age: "", category: "自創作", project_name: "名声", memo: "", icon: "" },
-      { id: 9, name: "乙坂 奏", gender: "女", age: "", category: "自創作", project_name: "名声", memo: "", icon: "https://i.gyazo.com/11b465c0fc8a48f92eff30ae8a8b2eb0.jpg" },
-      { id: 10, name: "八尾 氷華", gender: "女", age: "", category: "自創作", project_name: "氷結来春光", memo: "", icon: "" },
-      { id: 11, name: "御剣 敬", gender: "男", age: "", category: "自創作", project_name: "氷結来春光", memo: "", icon: "" },
-      { id: 12, name: "御剣 光", gender: "男", age: "", category: "自創作", project_name: "氷結来春光", memo: "", icon: "" },
-      { id: 13, name: "七海 花奈", gender: "女", age: "", category: "自創作", project_name: "姫と君", memo: "", icon: "" },
-      { id: 14, name: "鈴木 玲子", gender: "女", age: "", category: "自創作", project_name: "姫と君", memo: "", icon: "" },
-      { id: 15, name: "リセ", gender: "女", age: "", category: "自創作", project_name: "廃退的深涖部", memo: "", icon: "https://i.gyazo.com/9839ce3f96dfc0ae39df0275d7394d4f.png" },
-      { id: 16, name: "アリシア", gender: "女", age: "", category: "自創作", project_name: "廃退的深涖部", memo: "", icon: "https://i.gyazo.com/03cc98457cf8f74d15989568c1f8a633.png" },
-      { id: 17, name: "ルリ", gender: "男", age: "", category: "自創作", project_name: "廃退的深涖部", memo: "", icon: "" },
-      { id: 18, name: "セイ", gender: "女", age: "", category: "自創作", project_name: "廃退的深涖部", memo: "", icon: "https://i.gyazo.com/8627d435058c4c1758f39bdeafacb7f4.png" },
-      { id: 19, name: "セルノア", gender: "男", age: "", category: "自創作", project_name: "廃退的深涖部", memo: "", icon: "https://i.gyazo.com/3d59f3e32153d9230db5df794b55be87.png" },
       { id: 20, name: "夏沙", gender: "女", age: "", category: "自創作", project_name: "脳直", memo: "@aoi_sakaduki", icon: "https://i.gyazo.com/7cf2dabcb7459c27fe79ce12f2d5ba56.jpg" },
       { id: 21, name: "夏名", gender: "女", age: "", category: "自創作", project_name: "脳直", memo: "最近見かけなくなった。", icon: "" },
       { id: 22, name: "彼方", gender: "不明", age: "", category: "自創作", project_name: "脳直", memo: "", icon: "" },
@@ -222,6 +219,16 @@
       { id: 25, name: "葉月 メウラ", gender: "女", age: "", category: "自創作", project_name: "脳直", memo: "", icon: "" },
       { id: 26, name: "葉月 叶", gender: "女", age: "", category: "自創作", project_name: "脳直", memo: "", icon: "" },
       { id: 93, name: "新SE快晴", gender: "女", age: "", category: "自創作", project_name: "脳直", memo: "", icon: "https://i.gyazo.com/07218b7981a2c51e3ae61adb0230df76.jpg" },
+      { id: 10, name: "八尾 氷華", gender: "女", age: "", category: "自創作", project_name: "氷結来春光", memo: "", icon: "" },
+      { id: 12, name: "御剣 光", gender: "男", age: "", category: "自創作", project_name: "氷結来春光", memo: "", icon: "" },
+      { id: 11, name: "御剣 敬", gender: "男", age: "", category: "自創作", project_name: "氷結来春光", memo: "", icon: "" },
+      { id: 13, name: "七海 花奈", gender: "女", age: "", category: "自創作", project_name: "姫と君", memo: "", icon: "" },
+      { id: 14, name: "鈴木 玲子", gender: "女", age: "", category: "自創作", project_name: "姫と君", memo: "", icon: "" },
+      { id: 15, name: "リセ", gender: "女", age: "", category: "自創作", project_name: "廃退的深涖部", memo: "", icon: "https://i.gyazo.com/9839ce3f96dfc0ae39df0275d7394d4f.png" },
+      { id: 16, name: "アリシア", gender: "女", age: "", category: "自創作", project_name: "廃退的深涖部", memo: "", icon: "https://i.gyazo.com/03cc98457cf8f74d15989568c1f8a633.png" },
+      { id: 17, name: "ルリ", gender: "男", age: "", category: "自創作", project_name: "廃退的深涖部", memo: "", icon: "" },
+      { id: 18, name: "セイ", gender: "女", age: "", category: "自創作", project_name: "廃退的深涖部", memo: "", icon: "https://i.gyazo.com/8627d435058c4c1758f39bdeafacb7f4.png" },
+      { id: 19, name: "セルノア", gender: "男", age: "", category: "自創作", project_name: "廃退的深涖部", memo: "", icon: "https://i.gyazo.com/3d59f3e32153d9230db5df794b55be87.png" },
       { id: 27, name: "小春", gender: "女", age: "", category: "自創作", project_name: "四季折々僕らの色", memo: "", icon: "https://i.gyazo.com/da0de996c957e7802e7013511bba4054.png" },
       { id: 28, name: "花夏", gender: "女", age: "", category: "自創作", project_name: "四季折々僕らの色", memo: "", icon: "" },
       { id: 29, name: "千秋", gender: "男", age: "", category: "自創作", project_name: "四季折々僕らの色", memo: "", icon: "" },
@@ -287,17 +294,54 @@
       { id: 89, name: "茅柳 仁", gender: "男", age: "", category: "自創作", project_name: "", memo: "", icon: "" },
       { id: 90, name: "アオ", gender: "男", age: "", category: "その他", project_name: "CoC", memo: "", icon: "" },
       { id: 91, name: "箕眞 句々類", gender: "女", age: "", category: "その他", project_name: "エモクロア", memo: "", icon: "https://i.gyazo.com/fe1eda0b123c9d8e25ae95dea3fab8d8.jpg" },
-      { id: 92, name: "三輪田 花奈", gender: "男", age: "", category: "その他", project_name: "エモクロア", memo: "", icon: "" },
+      { id: 92, name: "三輪田 花奈", gender: "男", age: "", category: "その他", project_name: "エモクロア", memo: "", icon: "" }
+    ]
+  },
+  {
+    authorId: "nakitakunaru",
+    authorName: "nakitakuなる",
+    characters: [
+      { id: 8, name: "成瀬 奈留", gender: "女", age: "", category: "その他", project_name: "代理", memo: "", icon: "" },
+      { id: 1, name: "(sina)", gender: "女", age: "", category: "自創作", project_name: "無題D", memo: "", icon: "" },
+      { id: 2, name: "ルカ", gender: "男", age: "", category: "自創作", project_name: "無題D", memo: "", icon: "" },
+      { id: 3, name: "チェン", gender: "女", age: "", category: "自創作", project_name: "無題D", memo: "", icon: "" },
+      { id: 4, name: "ノア", gender: "女", age: "", category: "自創作", project_name: "無題C", memo: "", icon: "" },
+      { id: 5, name: "クロネ", gender: "女", age: "", category: "自創作", project_name: "無題Ｂ", memo: "クロネ", icon: "" },
+      { id: 6, name: "シラギ", gender: "女", age: "", category: "自創作", project_name: "無題Ｂ", memo: "", icon: "" },
+      { id: 7, name: "クルリ", gender: "女", age: "", category: "自創作", project_name: "無題Ｂ", memo: "", icon: "" },
+      { id: 27, name: "メドロノイド", gender: "女", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "https://i.gyazo.com/7337e07f0fab1f6ee01b50fe5a2e07c4.jpg" },
+      { id: 26, name: "ダグ クローニカル", gender: "男", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
+      { id: 20, name: "ツュア ローファント", gender: "女", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
+      { id: 22, name: "アンナ ドロウィクト", gender: "女", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
+      { id: 23, name: "ドト アランダグル", gender: "男", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
+      { id: 24, name: "ツヅ ナラント", gender: "男", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
+      { id: 25, name: "テナ クルス", gender: "男", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
+      { id: 28, name: "re", gender: "女", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
+      { id: 29, name: "ed", gender: "女", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
+      { id: 10, name: "リト イルダンド", gender: "男", age: "", category: "自創作", project_name: "群青色へ", memo: "", icon: "https://gyazo.com/7d8ec4e1a29f92ca467364bdceaba948.png" },
+      { id: 18, name: "33", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "https://i.gyazo.com/fe8f2ce71c376c1ad16745872f1d1a84.png" },
+      { id: 21, name: "ロヅ ナラント", gender: "男", age: "", category: "自創作", project_name: "群青色へ", memo: "", icon: "https://i.gyazo.com/ee037af3873e71c25f0a6edc8f18e97c.png" },
+      { id: 9, name: "リク イルダンド", gender: "男", age: "", category: "自創作", project_name: "群青色へ", memo: "", icon: "https://i.gyazo.com/8d57ced4d9efedbabe5f1f79ee8c80a1.png" },
+      { id: 11, name: "イトワ ハチェルズ・ロイ", gender: "男", age: "", category: "自創作", project_name: "群青色へ", memo: "", icon: "https://i.gyazo.com/9cf987ca62b301233ef1bce23f5453c9.png" },
+      { id: 12, name: "ジルコニア", gender: "女", age: "", category: "自創作", project_name: "群青色へ", memo: "", icon: "" },
+      { id: 13, name: "1", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "" },
+      { id: 14, name: "2", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "" },
+      { id: 15, name: "3", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "" },
+      { id: 16, name: "16", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "" },
+      { id: 17, name: "17", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "" },
+      { id: 19, name: "40", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "" },
+      { id: 30, name: "なる", gender: "女", age: "", category: "企画", project_name: "sseg", memo: "", icon: "" },
+      { id: 31, name: "トバセ", gender: "男", age: "", category: "企画", project_name: "sseg", memo: "", icon: "" },
       { id: 32, name: "null", gender: "null", age: "null", category: "null", project_name: "null", memo: "null", icon: "" }
     ]
   },
   {
-    authorId: "作者2",
+    authorId: "anon",
     authorName: "■■■■■■",
     characters: [
       { id: 1, name: "Argie Christophe", gender: "男", age: "18", category: "自創作", project_name: "AG手記", memo: "", icon: "https://i.gyazo.com/b9108b946a351dc4a30cd30add25d600.png" },
       { id: 2, name: "Fossis Crane", gender: "男", age: "29", category: "自創作", project_name: "AG手記", memo: "", icon: "https://i.gyazo.com/e825d8ae20c4803549d4e5b82df36f7a.png" },
-      { id: 3, name: "mellow", gender: "女", age: "", category: "自創作", project_name: "AG手記", memo: "", icon: "" },
+      { id: 3, name: "mellow", gender: "女", age: "", category: "自創作", project_name: "AG手記", memo: "", icon: "https://i.gyazo.com/dd2918dec733f6c91c0bc7c72342ff46.png" },
       { id: 4, name: "Arsofia Crane", gender: "女", age: "", category: "自創作", project_name: "AG手記", memo: "大魔導士", icon: "" },
       { id: 5, name: "costia Crane", gender: "女", age: "", category: "自創作", project_name: "AG手記", memo: "", icon: "" },
       { id: 6, name: "cantauro", gender: "男", age: "", category: "自創作", project_name: "AG手記", memo: "", icon: "" },
@@ -314,66 +358,28 @@
     ]
   },
   {
-    authorId: "作者3",
-    authorName: "nakitakuなる",
-    characters: [
-      { id: 1, name: "(sina)", gender: "女", age: "", category: "自創作", project_name: "無題D", memo: "", icon: "" },
-      { id: 2, name: "ルカ", gender: "男", age: "", category: "自創作", project_name: "無題D", memo: "", icon: "" },
-      { id: 3, name: "チェン", gender: "女", age: "", category: "自創作", project_name: "無題D", memo: "", icon: "" },
-      { id: 4, name: "ノア", gender: "女", age: "", category: "自創作", project_name: "無題C", memo: "", icon: "" },
-      { id: 5, name: "クロネ", gender: "女", age: "", category: "自創作", project_name: "無題Ｂ", memo: "クロネ", icon: "" },
-      { id: 6, name: "シラギ", gender: "女", age: "", category: "自創作", project_name: "無題Ｂ", memo: "", icon: "" },
-      { id: 7, name: "クルリ", gender: "女", age: "", category: "自創作", project_name: "無題Ｂ", memo: "", icon: "" },
-      { id: 8, name: "成瀬 奈留", gender: "女", age: "", category: "自創作", project_name: "無題A", memo: "", icon: "" },
-      { id: 9, name: "リク イルダンド", gender: "男", age: "", category: "自創作", project_name: "群青色へ", memo: "", icon: "https://i.gyazo.com/8d57ced4d9efedbabe5f1f79ee8c80a1.png" },
-      { id: 10, name: "リト イルダンド", gender: "男", age: "", category: "自創作", project_name: "群青色へ", memo: "", icon: "https://gyazo.com/7d8ec4e1a29f92ca467364bdceaba948.png" },
-      { id: 11, name: "イトワ ハチェルズ・ロイ", gender: "男", age: "", category: "自創作", project_name: "群青色へ", memo: "", icon: "https://i.gyazo.com/9cf987ca62b301233ef1bce23f5453c9.png" },
-      { id: 12, name: "ジルコニア", gender: "女", age: "", category: "自創作", project_name: "群青色へ", memo: "", icon: "" },
-      { id: 13, name: "1", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "" },
-      { id: 14, name: "2", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "" },
-      { id: 15, name: "3", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "" },
-      { id: 16, name: "16", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "" },
-      { id: 17, name: "17", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "" },
-      { id: 18, name: "33", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "https://i.gyazo.com/fe8f2ce71c376c1ad16745872f1d1a84.png" },
-      { id: 19, name: "40", gender: "女", age: "", category: "自創作", project_name: "異人", memo: "", icon: "" },
-      { id: 20, name: "ツュア ローファント", gender: "女", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
-      { id: 21, name: "ロヅ ナラント", gender: "男", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "https://i.gyazo.com/ee037af3873e71c25f0a6edc8f18e97c.png" },
-      { id: 22, name: "アンナ ドロウィクト", gender: "女", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
-      { id: 23, name: "ドト アランダグル", gender: "男", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
-      { id: 24, name: "ツヅ ナラント", gender: "男", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
-      { id: 25, name: "テナ クルス", gender: "男", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
-      { id: 26, name: "ダグ クローニカル", gender: "男", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
-      { id: 27, name: "メドロノイド", gender: "女", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "https://i.gyazo.com/7337e07f0fab1f6ee01b50fe5a2e07c4.jpg" },
-      { id: 28, name: "re", gender: "女", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
-      { id: 29, name: "ed", gender: "女", age: "", category: "自創作", project_name: "メドロノイド", memo: "", icon: "" },
-      { id: 30, name: "なる", gender: "女", age: "", category: "企画", project_name: "sseg", memo: "", icon: "" },
-      { id: 31, name: "トバセ", gender: "男", age: "", category: "企画", project_name: "sseg", memo: "", icon: "" },
-      { id: 32, name: "null", gender: "null", age: "null", category: "null", project_name: "null", memo: "null", icon: "" }
-    ]
-  },
-  {
-    authorId: "作者4",
+    authorId: "hic_shi",
     authorName: "HIC_SHI",
     characters: [
       { id: 1, name: "HIC_SHI", gender: "女", age: "", category: "その他", project_name: "代理", memo: "@HIC_SHI_NORI", icon: "https://i.gyazo.com/d3571b6f023a10af7ef251bed20b6789.jpg" },
       { id: 2, name: "宇宙ちゃん(仮)", gender: "女", age: "", category: "自創作", project_name: "コスモ✦ルール", memo: "その他宇宙ちゃんhttps://x.com/nemi_note/status/2050582779168178472/photo/1", icon: "https://i.gyazo.com/bf7ca4e908cba0521f8ea81ceb20ba00.jpg" },
       { id: 3, name: "ねこ(仮)", gender: "女", age: "", category: "その他", project_name: "", memo: "Discordサーバーのアイコンキャラ", icon: "" },
-      { id: 4, name: "佐古 柚希", gender: "女", age: "", category: "自創作", project_name: "信号機と相席純喫茶", memo: "", icon: "" },
-      { id: 5, name: "マスター", gender: "男", age: "", category: "自創作", project_name: "信号機と相席純喫茶", memo: "", icon: "" },
-      { id: 6, name: "作家", gender: "男", age: "", category: "自創作", project_name: "信号機と相席純喫茶", memo: "", icon: "" },
-      { id: 7, name: "立花 美湖", gender: "女", age: "", category: "自創作", project_name: "信号機と相席純喫茶", memo: "", icon: "" },
+      { id: 4, name: "佐古 柚希", gender: "女", age: "", category: "自創作", project_name: "信号機と相席純喫茶", memo: "", icon: "https://i.gyazo.com/d58a3e1f80575a68fdd5bf3487aaf61f.png" },
+      { id: 5, name: "マスター", gender: "男", age: "", category: "自創作", project_name: "信号機と相席純喫茶", memo: "", icon: "https://i.gyazo.com/48cb864ed2603c009220e7c2d6e27d79.png" },
+      { id: 6, name: "作家", gender: "男", age: "", category: "自創作", project_name: "信号機と相席純喫茶", memo: "", icon: "https://i.gyazo.com/a6b18f3ee231d3dfb01ac3470a62469c.png" },
+      { id: 7, name: "立花 美湖", gender: "女", age: "", category: "自創作", project_name: "信号機と相席純喫茶", memo: "", icon: "https://i.gyazo.com/cab7c62d771773b97b60d28709112644.png" },
       { id: 8, name: "ネモフィラ", gender: "女", age: "", category: "自創作", project_name: "", memo: "", icon: "https://i.gyazo.com/3d59eca624a5da7bcb794fc38294d492.jpg" },
       { id: 9, name: "星", gender: "女", age: "", category: "自創作", project_name: "", memo: "", icon: "https://i.gyazo.com/534f13cce11211f6ac45068914255d5e.jpg" },
       { id: 10, name: "バレンタイン", gender: "女", age: "", category: "自創作", project_name: "", memo: "", icon: "https://i.gyazo.com/1566261bcd27ccd580f08b991622f84f.jpg" },
-      { id: 11, name: "キーラ", gender: "女", age: "", category: "自創作", project_name: "", memo: "", icon: "" },
+      { id: 11, name: "キーラ", gender: "女", age: "", category: "自創作", project_name: "", memo: "Lineスタンプ @nemi-note", icon: "https://i.gyazo.com/fcbc2ca8718e7588cc17ebded48d0805.png" },
       { id: 12, name: "lovely", gender: "女", age: "", category: "自創作", project_name: "", memo: "", icon: "https://i.gyazo.com/79e069d1dcc6684bf9a557287a061131.png" },
       { id: 13, name: "spring", gender: "女", age: "", category: "自創作", project_name: "", memo: "", icon: "https://i.gyazo.com/94033fe26be5840212428e39013cb89c.jpg" },
       { id: 13, name: "chess", gender: "女", age: "", category: "自創作", project_name: "", memo: "", icon: "https://i.gyazo.com/f71e74673484086fa33d56d9cf4f05af.jpg" },
       { id: 14, name: "海", gender: "女", age: "", category: "自創作", project_name: "", memo: "", icon: "https://i.gyazo.com/a7df6b304ca657b79a89623c81931e84.jpg" },
       { id: 14, name: "えび", gender: "女", age: "", category: "自創作", project_name: "", memo: "", icon: "https://i.gyazo.com/15c216a87e8daed757a1bc5bfd9fa834.jpg" },
-      { id: 15, name: "ウビ", gender: "女", age: "", category: "自創作", project_name: "コスモ✦ルール", memo: "", icon: "" },
-      { id: 16, name: "カサカ", gender: "男", age: "", category: "自創作", project_name: "コスモ✦ルール", memo: "", icon: "" },
-      { id: 17, name: "瀬戸", gender: "男", age: "", category: "自創作", project_name: "街灯(仮)", memo: "", icon: "" },
+      { id: 15, name: "ウビ", gender: "女", age: "", category: "自創作", project_name: "コスモ✦ルール", memo: "", icon: "https://i.gyazo.com/cc26dc4731c6f4db5b32fe8e0ec330c2.png" },
+      { id: 16, name: "カサカ", gender: "男", age: "", category: "自創作", project_name: "コスモ✦ルール", memo: "", icon: "https://i.gyazo.com/a9db37a76545c2377d0a48f46d8a659e.png" },
+      { id: 17, name: "瀬戸", gender: "男", age: "", category: "自創作", project_name: "街灯(仮)", memo: "", icon: "https://i.gyazo.com/23533047a565f99dce26152c6eca748e.png" },
       { id: 18, name: "ムスベ", gender: "女", age: "", category: "自創作", project_name: "街灯(仮)", memo: "", icon: "https://i.gyazo.com/8ad36e4aba16313442046354db9a24eb.png" },
       { id: 19, name: "unknown_1", gender: "null", age: "null", category: "null", project_name: "null", memo: "null", icon: "https://i.gyazo.com/398c4c535733488580179e3d1ef4ea14.jpg" },
       { id: 32, name: "null", gender: "null", age: "null", category: "null", project_name: "null", memo: "null", icon: "" }

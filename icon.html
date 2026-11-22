@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>キャラクター簡易表</title>
+  <meta property="og:title" content="キャラクター簡易表">
+  <meta property="og:description" content="HIC_SHIのキャラクターまとめ！">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hic-shi.github.io/characterstable/">
+  <meta property="og:image" content="https://hic-shi.github.io/characterstable/icon.png">
+  <meta property="og:site_name" content="HIC_SHI Tool">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --bg-body: #b8b8b8;
+      --bg-card: #e5e5e5;
+      --border-color: #1a1a1a;
+      --text-color: #1a1a1a;
+      --accent-bg: #1a1a1a;
+      --accent-text: #ffffff;
+      --line: 2px solid var(--border-color);
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      background: var(--bg-body);
+      color: var(--text-color);
+      font-family: sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    main {
+      width: 100%;
+      max-width: 1200px;
+      min-height: 100vh;
+      padding: 28px;
+      background: var(--bg-card);
+      border: var(--line);
+      border-radius: 10px;
+    }
+
+    #top {
+      margin: 3rem 0 30px;
+      padding-bottom: 10px;
+      font-size: 1.8rem;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    /* 目次 */
+    .toc-toggle, .toc {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      width: 100%;
+      max-width: 1200px;
+      background: var(--accent-bg);
+      color: var(--accent-text);
+      border: 1px solid var(--border-color);
+    }
+    .toc-toggle {
+      padding: 10px 14px;
+      border-radius: 0 0 10px 10px;
+      font: inherit;
+      text-align: center;
+      cursor: pointer;
+      transform: translateX(-50%);
+      z-index: 12;
+    }
+    .toc {
+      margin: 0;
+      padding: 62px 18px 18px;
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      z-index: 11;
+      transform: translate(-50%, -100%);
+      transition: transform 0.25s ease;
+    }
+    .toc.open { transform: translate(-50%, 0); }
+    .toc p { margin: 0 0 6px; font-weight: bold; font-size: 0.9rem; }
+    .toc ul { margin: 0; padding-left: 20px; }
+    .toc li { margin-bottom: 4px; }
+
+    /* 作者セクション */
+    .author-section { margin-bottom: 40px; }
+    .author-title {
+      margin: 0 0 20px;
+      padding-left: 10px;
+      border-left: 5px solid var(--border-color);
+      font-size: 1.3rem;
+      line-height: 1.2;
+      scroll-margin-top: 60px;
+    }
+
+    /* カード一覧グリッド */
+    .character-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 16px;
+    }
+
+    /* カード（画像と名前のみ） */
+    .character-card {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border: var(--line);
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    .icon-area {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: var(--bg-body);
+      border-bottom: var(--line);
+    }
+
+    .icon-area img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .character-name {
+      margin: 0;
+      padding: 8px 6px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      text-align: center;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+      min-height: 2.8em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      body { display: block; }
+      main {
+        width: 100%;
+        max-width: none;
+        min-height: 100svh;
+        padding: 64px 10px 24px;
+        border-width: 0;
+        border-radius: 0;
+      }
+      #top {
+        margin: 1.2rem 0 24px;
+        font-size: clamp(1.25rem, 5vw, 1.7rem);
+        line-height: 1.35;
+      }
+      .author-section { margin-bottom: 32px; }
+      .author-title {
+        font-size: 1.15rem;
+        margin-bottom: 14px;
+        scroll-margin-top: 64px;
+      }
+      .character-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .character-name {
+        padding: 6px 4px;
+        font-size: 0.8rem;
+      }
+      .toc-toggle, .toc { width: 100%; }
+      .toc-toggle { left: 0; transform: none; }
+      .toc { left: 0; transform: translateY(-100%); }
+      .toc.open { transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .toc { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toc-toggle" id="toc-toggle" type="button"
+          aria-expanded="false" aria-controls="toc-panel">目次 ☰</button>
+  <nav class="toc" id="toc-panel" aria-label="作者一覧">
+    <p>目次</p>
+    <ul>
+      <li><a href="#nemi_note">音魅帳</a></li>
+      <li><a href="#nakitakunaru">nakitakuなる</a></li>
+      <li><a href="#anon">■■■■■■</a></li>
+      <li><a href="#hic_shi">HIC_SHI</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1 class="main-title" id="top">キャラクター簡易表</h1>
+    <div id="character-wrapper"></div>
+    <p style="text-align: center; margin-top: 40px;">©️HIC_SHI</p>
+  </main>
+
+  <script>
+  const authorDataList = [
+    {
+      authorId: "nemi_note",
+      authorName: "音魅帳",
+      characters: [
+        { name: "tell", icon: "https://i.gyazo.com/bdaa72372ce50cedffb8fe1f0ea9f253.png" },
+        { name: "柳生 雪弥", icon: "https://i.gyazo.com/4f1fd9d60cf0de07d9b20f3730d381bc.png" },
+        { name: "ラヴ", icon: "https://i.gyazo.com/53d26b514d60ad6f9d8ea555a2847bb8.png" },
+        { name: "明暦", icon: "https://i.gyazo.com/cfac26c79c87e82057b651cb84e688a5.png" },
+        { name: "鵜飼 鈴音", icon: "https://i.gyazo.com/76bb693f1fccad3a7264e351212982c9.png" },
+        { name: "妖", icon: "https://i.gyazo.com/07668f06d2b4aa61f507dd4e8c3f9a78.png" },
+        { name: " ", icon: "https://i.gyazo.com/e3ad03d42bde414e9dac86ac2375c8c8.png" },
+        { name: "乙坂 奏", icon: "https://i.gyazo.com/11b465c0fc8a48f92eff30ae8a8b2eb0.jpg" },
+        { name: "時雨 霧雨", icon: "https://i.gyazo.com/21200ad173b2ef71d3faf0fc8449e4e8.png" },
+        { name: "志亜", icon: "https://i.gyazo.com/fe734cec4a4dbb88d7101ae5bd4057d8.png" },
+        { name: " ", icon: "https://i.gyazo.com/940ec5f11c6824aa96c1f748740fb2b0.png" },
+        { name: " ", icon: "https://i.gyazo.com/c85b4278edcfcea7a1b9ed59e2876349.png" },
+        { name: "月音", icon: "https://i.gyazo.com/4bcc4c9c0917aaeee867356b6d1ee593.png" },
+        { name: "夏沙", icon: "https://i.gyazo.com/7cf2dabcb7459c27fe79ce12f2d5ba56.jpg" },
+        { name: "夏名", icon: "https://i.gyazo.com/c539c37e1201f7ca45e1e0611f84c84c.png" },
+        { name: "彼方", icon: "https://i.gyazo.com/54ee168818990d2c5cbc0be6163b2340.png" },
+        { name: "優", icon: "https://i.gyazo.com/8c65064239296ffcf885777474e644f1.png" },
+        { name: "葉月 コトメ", icon: "https://i.gyazo.com/cb4562e6b7a86c879babc8de510e3553.png" },
+        { name: "葉月 メウラ", icon: "https://i.gyazo.com/66bd8e37659317c2397d0baeb7dddc8e.png" },
+        { name: "葉月 叶", icon: "https://i.gyazo.com/787cff364e115aa543e7e3f05bfa4e52.png" },
+        { name: "新SE快晴", icon: "https://i.gyazo.com/07218b7981a2c51e3ae61adb0230df76.jpg" },
+        { name: "八尾 氷華", icon: "" },
+        { name: "御剣 光", icon: "" },
+        { name: "御剣 敬", icon: "" },
+        { name: "七海 花奈", icon: "https://i.gyazo.com/e75967b6099bd2f4a39c72bcf489289c.png" },
+        { name: "鈴木 玲子", icon: "https://i.gyazo.com/d2c7ed7f84715bb0d4cd5d25362fd05c.png" },
+        { name: "戸口 赤華", icon: "https://i.gyazo.com/45986e31e8d7f460b56e294d485aebb5.png" },
+        { name: "桜木 梅", icon: "https://i.gyazo.com/e5c9c3938b5643e51e741f5e20a871d2.png" },
+        { name: "緑川 音色", icon: "https://i.gyazo.com/605401af744da3071d1e5933a8b6e329.png" },
+        { name: "戸口 青葉", icon: "https://i.gyazo.com/101bdd632d16d1ebb257cb5b99e2203d.png" },
+        { name: "アリシア", icon: "https://i.gyazo.com/03cc98457cf8f74d15989568c1f8a633.png" },
+        { name: "ルリ", icon: "https://i.gyazo.com/d53ce387c945cccc9b3b3a9eb2ccb19c.png" },
+        { name: "セイ", icon: "https://i.gyazo.com/8627d435058c4c1758f39bdeafacb7f4.png" },
+        { name: "セルノア", icon: "https://i.gyazo.com/3d59f3e32153d9230db5df794b55be87.png" },
+        { name: "リセ", icon: "https://i.gyazo.com/9839ce3f96dfc0ae39df0275d7394d4f.png" },
+        { name: "小春", icon: "https://i.gyazo.com/da0de996c957e7802e7013511bba4054.png" },
+        { name: "花夏", icon: "" },
+        { name: "千秋", icon: "https://i.gyazo.com/9ee5ccc9f7ee2b61d91e69f5e92e53e4.png" },
+        { name: "千冬", icon: "https://i.gyazo.com/9202a388706a5b8e8f4a646b82c909c2.png" },
+        { name: "ナノ", icon: "https://i.gyazo.com/97064ce0feb27ab179c91a2d80544ecc.png" },
+        { name: "ユラ", icon: "https://i.gyazo.com/890bb6a47c5436d682b32f744ed99405.png" },
+        { name: "シグ", icon: "https://i.gyazo.com/26ac86159465f5c59a56bf213a867890.png" },
+        { name: "キト", icon: "https://i.gyazo.com/6aed3e877225904f064a03e536d81345.png" },
+        { name: "カノ", icon: "https://i.gyazo.com/b5728447b21cbf864955a8ab85e54a39.png" },
+        { name: "ツキ", icon: "https://i.gyazo.com/0c8bb8bd86699d40ca20a90810522a94.png" },
+        { name: "ミリ", icon: "https://i.gyazo.com/ba0a9356f821e1c208dd96165a58228f.png" },
+        { name: "アイ", icon: "https://i.gyazo.com/da0ac2ecfcf12bfa6cd4899d863634d2.png" },
+        { name: "スズ", icon: "https://i.gyazo.com/5dbfb887783a6f0936d8689a9dcbf272.png" },
+        { name: "コト", icon: "https://i.gyazo.com/b03fb8a80880573a29a87b66b2467306.png" },
+        { name: "クロ", icon: "https://i.gyazo.com/1ce8f9e71b6d0f111265bf7ca7a92a1f.png" },
+        { name: "シロ", icon: "https://i.gyazo.com/5858f7b53130a7306fb3af0afbbf1480.png" },
+        { name: "緋色", icon: "https://i.gyazo.com/c7328d6abc63740376cfd5caa196c7b2.png" },
+        { name: "モチ", icon: "https://i.gyazo.com/c52b1cc4c3455f7eba2b5c8f8303070f.png" },
+        { name: "海月", icon: "https://i.gyazo.com/6d8553c72c1bcfe73169d3a223c227c7.png" },
+        { name: "宵華 枷喜", icon: "https://i.gyazo.com/3a91ab49716cca97dd8fbf9b8bc8dca3.png" },
+        { name: "五十嵐 駿", icon: "https://i.gyazo.com/7f84ee2f1b91b7291df8043a799f166c.png" },
+        { name: "姉(仮)", icon: "https://i.gyazo.com/6c133b21ca3c1ce4b983a00f6dc438ad.png" },
+        { name: "妹(仮)", icon: "https://i.gyazo.com/99f0e965fbe90e64613301bd5bd2e746.png" },
+        { name: "ねみ", icon: "https://i.gyazo.com/45b12a39354c8a2c4897ba6b5215358b.png" },
+        { name: "のんせーたあと", icon: "https://i.gyazo.com/988a9e18bb7e3ca7fc5e6714ae64d669.png" },
+        { name: "バグ", icon: "https://i.gyazo.com/38789d50a40cdf1cc464287b63534e81.png" },
+        { name: "少年", icon: "" },
+        { name: "Noah Aldrich", icon: "https://i.gyazo.com/dfb4ab7552b497c43fbaa39e7f5dc98b.jpg" },
+        { name: "Sextilis Custokey", icon: "https://i.gyazo.com/e8acf2c2a17019aeb4243d166099f4f4.png" },
+        { name: "廻詩達 糾", icon: "https://i.gyazo.com/b5420c358af4e491b1e2a871af77744e.png" },
+        { name: "枸累 藍", icon: "https://i.gyazo.com/03f985baa57e46dca983040b795a5ae5.png" },
+        { name: "阿多田 夕立", icon: "https://i.gyazo.com/36d2193b37cf5a6190636d376e939a4c.jpg" },
+        { name: "芒星 クロネ", icon: "https://i.gyazo.com/04916f6aa7d408cd3f8892d120fd1b9b.jpg" },
+        { name: "汐見 美津", icon: "https://i.gyazo.com/cc6337c6320e2acb05f66edeb02a09be.png" },
+        { name: "汐見 零奈", icon: "https://i.gyazo.com/1a6080d78bd6d1c057926c82b24e3be0.png" },
+        { name: "晴", icon: "https://i.gyazo.com/d3e4ce8f2793f696dffda203113815ff.png" },
+        { name: "花韮 想沙", icon: "https://i.gyazo.com/b57ba414e71c8fd48adf9b1213df8b81.png" },
+        { name: "茅柳 仁", icon: "" },
+        { name: "汐見 悟", icon: "https://i.gyazo.com/d33821ff2582c1fd39aab4d9a26a3609.png" },
+        { name: "宇都 キソ", icon: "https://i.gyazo.com/d059f0e08d495ac32109c3be9d2de4c8.jpg" },
+        { name: "∷ 宵華 加瀬木 ∷", icon: "https://i.gyazo.com/b70c97e5357dd229d7f0859b7e4caddb.jpg" },
+        { name: "早乙女 語", icon: "https://i.gyazo.com/2d5a3423c4da1a50ecadada70e9cd244.png" },
+        { name: "青蓮華 附子", icon: "https://i.gyazo.com/d1d3cc01efaa8d90166c9d7f4fe7e010.png" },
+        { name: "奈良 心", icon: "https://i.gyazo.com/615985c9dd76a49c8c5a3f24459cebb1.png" },
+        { name: "黒井 飴", icon: "https://i.gyazo.com/a3027704f33fc774466dba9319e9c9ba.jpg" },
+        { name: "john", icon: "https://i.gyazo.com/a5e853e840c7c0694eb0db42d6f7dc7f.png" },
+        { name: "玖波 小豆", icon: "https://i.gyazo.com/9f7209c60bc084103e68439bd66a1e33.png" },
+        { name: "アオ", icon: "https://i.gyazo.com/d6ba5d09563019c1a496cda857aba68f.png" },
+        { name: "西麻植 蛙", icon: "https://i.gyazo.com/cdd6930d5c82f2203e428900c55bd0f6.jpg" },
+        { name: "月村 彼方", icon: "https://i.gyazo.com/d7fc4b676f5624f0c02dac860501360c.png" },
+        { name: "幸村 優", icon: "https://i.gyazo.com/1f4990b646a22a863a7dc1008208d0d4.png" },
+        { name: "月村 優", icon: "https://i.gyazo.com/5cdf8e5e5d4c15b00f3e28f367e1e7dd.png" },
+        { name: "山上 蘭希", icon: "https://i.gyazo.com/d2d1719603e50af72cec0876d2842f27.png" },
+        { name: "メロウ", icon: "https://i.gyazo.com/32a37a3e7e4cb077fb6ff6fed461a10b.jpg" },
+        { name: "古灯 朝", icon: "https://i.gyazo.com/8358540484bd8d67f9300d50ab7dfee9.png" },
+        { name: "スミレ", icon: "https://i.gyazo.com/ba0b26306cae7d9801fccce77f9969ce.jpg" },
+        { name: "水溺", icon: "https://i.gyazo.com/e1fddf1180607a95c36e754806012259.png" },
+        { name: "箕眞 句々類", icon: "https://i.gyazo.com/fe1eda0b123c9d8e25ae95dea3fab8d8.jpg" },
+        { name: "三輪田 花奈", icon: "https://i.gyazo.com/ae1093857648e58c1a79decfc85c1f14.png" }
+      ]
+    },
+    {
+      authorId: "nakitakunaru",
+      authorName: "nakitakuなる",
+      characters: [
+        { name: "成瀬 奈留", icon: "https://i.gyazo.com/014a8ac9dacf7a35eaab50d4c7f7a30e.png" },
+        { name: "(sina)", icon: "https://i.gyazo.com/ac1abbb5a69c4b0095db269f916a83ea.png" },
+        { name: "ルカ", icon: "https://i.gyazo.com/3f92fb30a8263e907b086d15e86b8779.png" },
+        { name: "チェン", icon: "https://i.gyazo.com/c51b43af54e810d797224eb5707cf22b.png" },
+        { name: "クロネ", icon: "https://i.gyazo.com/d08d5552755b19231ad95599eaffad8f.png" },
+        { name: "シラギ", icon: "https://i.gyazo.com/819bf21c5b5c80517668dede3ea25717.png" },
+        { name: "クルリ", icon: "https://i.gyazo.com/adbae9423df456e030fbe51cc0c9c235.png" },
+        { name: "メドロノイド", icon: "https://i.gyazo.com/c62bbcdd3ef0a4ae039dea4f004af4eb.png" },
+        { name: "ダグ クローニカル", icon: "https://i.gyazo.com/e66c3969ab36dac4c3924f843b9c0662.png" },
+        { name: "ツュア ローファント", icon: "https://i.gyazo.com/b6e0cc4660e6ed3329be2ead6fd66883.png" },
+        { name: "アンナ ドロウィクト", icon: "https://i.gyazo.com/4c83e1b0c6ac96294b150daa326cbcf5.png" },
+        { name: "ドト アランダグル", icon: "https://i.gyazo.com/3ab2f160fcb62c75cfa917fabaab73e5.png" },
+        { name: "ツヅ ナラント", icon: "" },
+        { name: "テナ クルス", icon: "https://i.gyazo.com/05524623ee8bc658e62db69d62dc09ac.png" },
+        { name: "re", icon: "" },
+        { name: "ed", icon: "https://i.gyazo.com/f1d5e89a11ad448897a416acc4cbc561.png" },
+        { name: "リト イルダンド", icon: "https://gyazo.com/7d8ec4e1a29f92ca467364bdceaba948.png" },
+        { name: "33", icon: "https://i.gyazo.com/fe8f2ce71c376c1ad16745872f1d1a84.png" },
+        { name: "ロヅ ナラント", icon: "https://i.gyazo.com/ee037af3873e71c25f0a6edc8f18e97c.png" },
+        { name: "リク イルダンド", icon: "https://i.gyazo.com/8d57ced4d9efedbabe5f1f79ee8c80a1.png" },
+        { name: "イトワ ハチェルズ・ロイ", icon: "https://i.gyazo.com/9cf987ca62b301233ef1bce23f5453c9.png" },
+        { name: "ジルコニア", icon: "https://gyazo.com/abe4068e1aad5c61834800d723396e01.png" },
+        { name: "2", icon: "https://i.gyazo.com/717dafd317cc5624ab483166e9510f40.png" },
+        { name: "3", icon: "https://i.gyazo.com/879477b8b5d56dad85e8e2ac4d641176.png" },
+        { name: "16", icon: "https://i.gyazo.com/2fe944f21cfe0ebaa5c73d049f7741e3.png" },
+        { name: "17", icon: "https://i.gyazo.com/d6256ce586d37a3d418d4cdf76e334f6.png" },
+        { name: "なる", icon: "https://i.gyazo.com/31612978d81f342d84c383ade5e82d2c.png" },
+        { name: "トバセ", icon: "https://i.gyazo.com/e474f1fdcff23030ad5b49f060b420df.png" }
+      ]
+    },
+    {
+      authorId: "anon",
+      authorName: "■■■■■■",
+      characters: [
+        { name: "Argie Christophe", icon: "https://i.gyazo.com/b9108b946a351dc4a30cd30add25d600.png" },
+        { name: "Fossis Crane", icon: "https://i.gyazo.com/e825d8ae20c4803549d4e5b82df36f7a.png" },
+        { name: "mellow", icon: "https://i.gyazo.com/dd2918dec733f6c91c0bc7c72342ff46.png" },
+        { name: "Arsofia Crane", icon: "https://gyazo.com/87fa7701e51374c3d72b6dd9cba11b90.png" },
+        { name: "costia Crane", icon: "https://gyazo.com/d1937e6b6403a5c3195a64a4986940e8.png" },
+        { name: "cantauro", icon: "https://gyazo.com/b0640245b80d543864a99aa4570af68f.png" },
+        { name: "calm Fitcher", icon: "https://gyazo.com/58920cd083fe09677bd2cfa1dbbb434f.png" },
+        { name: "Ryuun kaskate", icon: "https://gyazo.com/40f6a1afd56bf28d542ca98e87a7e6eb.png" },
+        { name: "Lynn Harbara", icon: "https://gyazo.com/a0df53d0d5c68d63434d743aec1ce2b9.png" },
+        { name: "Catal Linketem", icon: "https://i.gyazo.com/0b24382d9bd6ceb0f70cc3f2a9591a60.png" },
+        { name: "Mixire Rondom・Laurent", icon: "https://i.gyazo.com/ad702d2a182d84b5f182592e8d2a017b.png" },
+        { name: "noah", icon: "https://gyazo.com/61c9fd13fcb9afae128af7ba7122d757.png" },
+        { name: "I", icon: "https://i.gyazo.com/b2ba063136aafe321c745ee76b9ae8ee.png" },
+        { name: "remedium", icon: "https://i.gyazo.com/55f989649694501be6221e0f907c677d.png" },
+        { name: "第一王女", icon: "https://i.gyazo.com/8d815bdad2c37fecba702547017bdfdb.jpg" },
+        { name: " ", icon: "https://i.gyazo.com/563a611ee710d085f51aa56d6245b68a.png" }
+      ]
+    },
+    {
+      authorId: "hic_shi",
+      authorName: "HIC_SHI",
+      characters: [
+        { name: "HIC_SHI", icon: "https://i.gyazo.com/d3571b6f023a10af7ef251bed20b6789.jpg" },
+        { name: "宇宙ちゃん(仮)", icon: "https://i.gyazo.com/bf7ca4e908cba0521f8ea81ceb20ba00.jpg" },
+        { name: "ねこ(仮)", icon: "https://i.gyazo.com/e6dc2a0fc120a9f32c57179517d968f4.png" },
+        { name: "佐古 柚希", icon: "https://i.gyazo.com/d58a3e1f80575a68fdd5bf3487aaf61f.png" },
+        { name: "マスター", icon: "https://i.gyazo.com/48cb864ed2603c009220e7c2d6e27d79.png" },
+        { name: "作家", icon: "https://i.gyazo.com/a6b18f3ee231d3dfb01ac3470a62469c.png" },
+        { name: "立花 美湖", icon: "https://i.gyazo.com/cab7c62d771773b97b60d28709112644.png" },
+        { name: "ネモフィラ", icon: "https://i.gyazo.com/3d59eca624a5da7bcb794fc38294d492.jpg" },
+        { name: "星", icon: "https://i.gyazo.com/534f13cce11211f6ac45068914255d5e.jpg" },
+        { name: "バレンタイン", icon: "https://i.gyazo.com/1566261bcd27ccd580f08b991622f84f.jpg" },
+        { name: "キーラ", icon: "https://i.gyazo.com/fcbc2ca8718e7588cc17ebded48d0805.png" },
+        { name: "lovely", icon: "https://i.gyazo.com/79e069d1dcc6684bf9a557287a061131.png" },
+        { name: "spring", icon: "https://i.gyazo.com/94033fe26be5840212428e39013cb89c.jpg" },
+        { name: "chess", icon: "https://i.gyazo.com/f71e74673484086fa33d56d9cf4f05af.jpg" },
+        { name: "海", icon: "https://i.gyazo.com/a7df6b304ca657b79a89623c81931e84.jpg" },
+        { name: "えび", icon: "https://i.gyazo.com/15c216a87e8daed757a1bc5bfd9fa834.jpg" },
+        { name: "ウビ", icon: "https://i.gyazo.com/cc26dc4731c6f4db5b32fe8e0ec330c2.png" },
+        { name: "カサカ", icon: "https://i.gyazo.com/a9db37a76545c2377d0a48f46d8a659e.png" },
+        { name: "瀬戸", icon: "https://i.gyazo.com/23533047a565f99dce26152c6eca748e.png" },
+        { name: "ムスベ", icon: "https://i.gyazo.com/8ad36e4aba16313442046354db9a24eb.png" },
+        { name: "unknown_1", icon: "https://i.gyazo.com/398c4c535733488580179e3d1ef4ea14.jpg" },
+        { name: "プラチナ", icon: "https://gyazo.com/0f1968fff87d78bf4449670697b5b921.png" }
+      ]
+    }
+  ];
+
+  const wrapper = document.getElementById("character-wrapper");
+
+  authorDataList.forEach(authorData => {
+    const section = document.createElement("section");
+    section.className = "author-section";
+
+    const heading = document.createElement("h2");
+    heading.className = "author-title";
+    heading.id = authorData.authorId;
+    heading.textContent = authorData.authorName;
+    section.appendChild(heading);
+
+    const grid = document.createElement("div");
+    grid.className = "character-grid";
+
+    authorData.characters.forEach(item => {
+      const card = document.createElement("article");
+      card.className = "character-card";
+
+      const iconArea = document.createElement("div");
+      iconArea.className = "icon-area";
+
+      if (item.icon) {
+        const img = document.createElement("img");
+        img.src = item.icon;
+        img.alt = item.name.trim() || "キャラクターアイコン";
+        img.loading = "lazy";
+        iconArea.appendChild(img);
+      }
+
+      const nameEl = document.createElement("p");
+      nameEl.className = "character-name";
+      nameEl.textContent = item.name || "";
+
+      card.appendChild(iconArea);
+      card.appendChild(nameEl);
+      grid.appendChild(card);
+    });
+
+    section.appendChild(grid);
+    wrapper.appendChild(section);
+  });
+
+  const tocToggle = document.getElementById("toc-toggle");
+  const tocPanel = document.getElementById("toc-panel");
+
+  tocToggle.addEventListener("click", () => {
+    const isOpen = tocPanel.classList.toggle("open");
+    tocToggle.setAttribute("aria-expanded", String(isOpen));
+    tocToggle.textContent = isOpen ? "閉じる ×" : "目次 ☰";
+  });
+
+  tocPanel.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      tocPanel.classList.remove("open");
+      tocToggle.setAttribute("aria-expanded", "false");
+      tocToggle.textContent = "目次 ☰";
+    });
+  });
+  </script>
+</body>
+</html>
